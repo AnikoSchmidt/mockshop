@@ -6,9 +6,9 @@ export const fetchProductsBegin = () => ({
   type: FETCH_PRODUCTS_BEGIN
 });
 
-export const fetchProductsSuccess = products => ({
+export const fetchProductsSuccess = json => ({
   type: FETCH_PRODUCTS_SUCCESS,
-  payload: { products }
+  payload: { json }
 });
 
 export const fetchProductsFailure = error => ({
@@ -24,14 +24,8 @@ export function fetchProducts() {
         .then(res => res.json())
         .then(json => {
             console.log('j', json);
-        
-            let result = json.reduce(function (r, a) {
-              r[a.category] = r[a.category] || [];
-              r[a.category].push(a);
-              return r;
-          }, Object.create(null));
-          console.log('result', result);
-          dispatch(fetchProductsSuccess(result));
+
+          dispatch(fetchProductsSuccess(json));
 
 
           return json.body;

@@ -53,7 +53,6 @@ const CategoryDetails = ({ selectedProducts }) => {
             )
         })}</div>
     }
-
 }
 
 export default CategoryDetails;

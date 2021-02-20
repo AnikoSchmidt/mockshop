@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import { withStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import CategoryDetails from './CategoryDetails'
+import CircularProgress from '@material-ui/core'
 
 
 const styles = function(theme) {
@@ -26,7 +27,7 @@ const styles = function(theme) {
     container: {
       display: 'flex',
       justifyContent: 'center',
-    }
+    },
   };
 };
 
@@ -52,13 +53,10 @@ class CategoriesList extends React.Component {
     );
   }
 
-
   render() {
     const { error, loading, products, classes } = this.props;
     const { category} = this.state;
-    console.log('products', products);
-    const categories = Object.keys(products);
-    console.log(categories);
+    const categories = Object.keys(products)
 
     if (error) {
       return <div>Error! {error.message}</div>;
@@ -67,10 +65,6 @@ class CategoriesList extends React.Component {
     if (loading) {
       return <div>Loading...</div>;
     }
-    console.log(categories)
-    console.log('state', this.state)
-    console.log('actualproducts', products[category])
-    console.log('ablabla', products[''])
     return (
       <Fragment>
         <div className={classes.container}>
