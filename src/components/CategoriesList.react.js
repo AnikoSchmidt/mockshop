@@ -1,107 +1,65 @@
-import React, { Fragment } from "react";
-import { connect } from "react-redux";
-import { fetchProducts } from "../actions/productsActions";
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import { withStyles } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
-import CategoryDetails from './CategoryDetails'
-import CircularProgress from '@material-ui/core'
+import React from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { setCategory } from '../actions/appActions';
+import {
+  makeStyles, 
+  CircularProgress
+} from '@material-ui/core';
+import CardItem from "./Carditem.react";
 
 
-const styles = function(theme) {
-  return {
-    root: {
-      width: 150,
-      padding: 16,
-      margin: 16,
-      
-    },
-    media: {
-      width: 150,
-      height: 150,
-      objectFit: 'contain'
-    },
-    container: {
-      display: 'flex',
-      justifyContent: 'center',
-    },
-  };
-};
+const useStyles = makeStyles({
+  container: {
+    padding: '20px',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  card: {
+    marginLeft: 8,
+    width: 200,
+  },
+  categoryImage: {
+    height: 200,
+    objectFit: 'contain',
+  },
+  titleCase: {
+    textTransform: 'capitalize',
+  }
+}) 
 
 
-class CategoriesList extends React.Component {
-  state = {category: ''}
-  componentDidMount() {
-    console.log('before fetch product');
-    this.props.dispatch(fetchProducts());
+
+export default function CategoriesList() {
+  const productsByCategory = useSelector(
+    state => state.products?.productsByCategory
+  );
+  
+  const styles = useStyles();
+  const dispatch = useDispatch();
+
+  const clickHandler = selectedCategoryName => {
+    dispatch(setCategory(selectedCategoryName));
   }
 
-  componentDidUpdate() {
-   
-
-  }
-
-  toTitleCase = (str) => {
-    return str.replace(
-      /\w\S*/g,
-      function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      }
-    );
-  }
-
-  render() {
-    const { error, loading, products, classes } = this.props;
-    const { category} = this.state;
-    const categories = Object.keys(products)
-
-    if (error) {
-      return <div>Error! {error.message}</div>;
-    }
-
-    if (loading) {
-      return <div>Loading...</div>;
-    }
-    return (
-      <Fragment>
-        <div className={classes.container}>
-          {categories.map(category => {
-            const image = products[category][0].image;
-
-            return (
-              <Fragment>
-              <Card className={classes.root} onClick={()=> {this.setState({category: category})}}>
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image={image}
-                    title="Contemplative Reptile"
+  return (
+        <div className={styles.container}>
+          {productsByCategory != null ? (
+            Object.keys(productsByCategory).map((category, index) => {
+              return (
+                <CardItem
+                  key={index}
+                  label={category}
+                  imageURL={productsByCategory[category][0].image}
+                  clickHandler={() => clickHandler(category)}
                   />
-                  <CardContent>
-                  <Typography gutterBottom variant="subtitle2" component="h4">
-                    {this.toTitleCase(category)}
-                  </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-              </Fragment>
-            )
-          })}
+              );
+            })
+        ) : (
+           <CircularProgress size={24} />
+        )}
         </div>
-        <CategoryDetails selectedProducts={products[category]} />
-      </Fragment>
     );
   }
-}
 
-const mapStateToProps = state => ({
-  products: state.products.items,
-  loading: state.products.loading,
-  error: state.products.error
-});
 
-export default connect(mapStateToProps)(withStyles(styles)(CategoriesList))
 
