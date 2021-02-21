@@ -3,8 +3,7 @@ export default function appReducer(state = {}, action) {
       case 'SET_CATEGORY': 
         return {...state, selectedCategoryName: action.selectedCategoryName};
       
-      case 'SET_SELECTEDPRODUCT': 
-        console.log('sp', action.selectedProduct)
+      case 'SET_SELECTEDPRODUCT':
         return {...state, selectedProduct: action.selectedProduct};
     
      default:

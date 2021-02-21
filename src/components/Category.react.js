@@ -14,7 +14,6 @@ const useStyles = makeStyles({
         padding: '20px',
         display: 'flex',
         justifyContent: 'center',
-        
       },
     titleCase: {
         textTransform: 'capitalize',
@@ -26,7 +25,7 @@ const useStyles = makeStyles({
     categoryImage: {
         height: 200,
         objectFit: 'contain',
-            },
+    },
   });
 
 export default function Category({ selectedCategory }) {
@@ -41,7 +40,6 @@ export default function Category({ selectedCategory }) {
     const selectedItem = useSelector(
         state => state.app.selectedProduct
     );
-    console.log(selectedItem);
     return (
         <>
         {selectedItem ? (<Product selectedProduct={selectedItem}/>) : (
