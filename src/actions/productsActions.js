@@ -10,3 +10,4 @@ export const getProducts = () => dispatch => {
       dispatch(populateProducts(json));
     });
 };
+

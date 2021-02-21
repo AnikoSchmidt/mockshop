@@ -1,12 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { setCategory } from '../actions/appActions';
-import {
-  makeStyles, 
-  CircularProgress
-} from '@material-ui/core';
+import {makeStyles, CircularProgress} from '@material-ui/core';
 import CardItem from "./Carditem.react";
-
 
 const useStyles = makeStyles({
   container: {
@@ -27,13 +23,11 @@ const useStyles = makeStyles({
   }
 }) 
 
-
-
 export default function CategoriesList() {
   const productsByCategory = useSelector(
     state => state.products?.productsByCategory
   );
-  
+   
   const styles = useStyles();
   const dispatch = useDispatch();
 
