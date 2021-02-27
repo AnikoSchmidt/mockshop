@@ -8,15 +8,17 @@ import Product from './Product.react';
 const useStyles = makeStyles({
     categoryTitle: {
       fontFamily: 'Roboto, Arial, Helvetica, sans-serif',
-      justifyContent: 'center',
+      textAlign: 'center',
     },
     container: {
         padding: '20px',
         display: 'flex',
         justifyContent: 'center',
       },
-    titleCase: {
+    title: {
         textTransform: 'capitalize',
+        margin: 'auto',
+        color: '#3a606e',
     },
     card: {
         marginLeft: 8,
@@ -45,7 +47,7 @@ export default function Category({ selectedCategory }) {
         {selectedItem ? (<Product selectedProduct={selectedItem}/>) : (
             <>
             <div className={styles.categoryTitle}>
-            <Typography variant='h4' className={styles.titleCase}>
+            <Typography variant='h4' className={styles.title}>
                 {selectedCategory}
             </Typography>
             </div>

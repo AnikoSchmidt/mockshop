@@ -37,7 +37,8 @@ const useStyles = makeStyles({
           textOverflow: 'ellipsis',
           overflow: 'hidden',
           whiteSpace: 'nowrap',
-          justifyContent: 'center',
+          textAlign: 'center',
+          color: '#3a606e',
       },
   });
 
@@ -55,7 +56,7 @@ export default function CardItem({ label, imageURL, clickHandler }) {
                     <CardContent>
                       <Typography
                         variant='h6'
-                        color='primary'
+                        color='#05668d'
                         className={styles.title}
                       >
                         {label}
