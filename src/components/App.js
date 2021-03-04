@@ -5,6 +5,7 @@ import CategoriesList from './CategoriesList.react';
 import { getProducts } from '../actions/productsActions';
 import Category from './Category.react';
 import Product from './Product.react';
+import NavBar from './NavBar.react';
 
 const useStyles = makeStyles({
   app: {
@@ -17,7 +18,7 @@ function App() {
   const styles = useStyles();
 
   const { selectedCategoryName, activePage, selectedProductId  } = useSelector(state => state.app);
-  
+  console.log(selectedProductId);
   useEffect(() => dispatch(getProducts()), [dispatch]);
 
   const renderPage = () => {
@@ -25,15 +26,15 @@ function App() {
       case 'CATEGORY': 
       return (<Category selectedCategory={selectedCategoryName} />)
       case 'PRODUCT':
-      return (<Product selectedProductId={selectedProductId} />)
+      return (<Product />)
       case 'HOME':
       default: 
       return (<CategoriesList />)
     }
   }
   return (
-
     <div className={styles.app}>
+      <NavBar />
       {renderPage()}
     </div>
   );

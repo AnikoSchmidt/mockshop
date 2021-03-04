@@ -60,7 +60,7 @@ const useStyles = makeStyles({
     }
   });
 
-export default function Product(selectedProductId) {
+export default function Product() {
    
     const styles = useStyles();
     
@@ -71,7 +71,7 @@ export default function Product(selectedProductId) {
           [name]: event.target.value,
         });
       };
-
+    const { selectedProductId  } = useSelector(state => state.app);
     const selectedCategoryName = useSelector(
         state => state.app.selectedCategoryName
     );
@@ -97,20 +97,20 @@ export default function Product(selectedProductId) {
         <div className={styles.container}>
             
             <CardItem
-                    key={selectedProductId.selectedProductId}
-                    label={productsById[selectedProductId.selectedProductId]?.title}
-                    imageURL={productsById[selectedProductId.selectedProductId]?.image}
+                    key={selectedProductId}
+                    label={productsById[selectedProductId]?.title}
+                    imageURL={productsById[selectedProductId]?.image}
                     clickHandler={()=> {}}
                     />
             <div>
              <Typography variant='h5' className={styles.productTitle}>
-                {productsById[selectedProductId.selectedProductId].title}
+                {productsById[selectedProductId].title}
             </Typography>   
             <Typography variant='p' color='grey' className={styles.productDescription}>
-                {productsById[selectedProductId.selectedProductId].description}
+                {productsById[selectedProductId].description}
             </Typography> 
             <Typography  className={styles.price}>
-                <span>Price: ${productsById[selectedProductId.selectedProductId].price}</span>
+                <span>Price: ${productsById[selectedProductId].price}</span>
             </Typography>  
             <div className={styles.selectorContainer}>   
             <div className={styles.productDetails}>

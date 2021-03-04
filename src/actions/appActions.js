@@ -3,7 +3,10 @@ export const setCategory = selectedCategoryName => ({
     selectedCategoryName,
 });
 
-export const setProduct = selectedProductId => ({
+export const setProduct = selectedProductId => {
+    console.log(selectedProductId)
+    return {
     type: 'SET_SELECTEDPRODUCT', 
     selectedProductId,
-});
+};
+}

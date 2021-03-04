@@ -37,6 +37,7 @@ export default function Category({ selectedCategory }) {
     );
     const dispatch = useDispatch();
     const clickHandler = selectedProductId => {
+        console.log(selectedProductId);
         dispatch(setProduct(selectedProductId));
       }
     const selectedItem = useSelector(

@@ -22,6 +22,7 @@ export default function appReducer(state = initialState, action) {
         };
       
       case 'SET_SELECTEDPRODUCT':
+        console.log(action.selectedProductId);
         return {
           ...state, 
           selectedProductId: action.selectedProductId, 
