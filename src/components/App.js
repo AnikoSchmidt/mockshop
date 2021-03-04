@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core';
 import CategoriesList from './CategoriesList.react';
 import { getProducts } from '../actions/productsActions';
-import Category from './Category.react.js'
+import Category from './Category.react';
+import Product from './Product.react';
 
 const useStyles = makeStyles({
   app: {
@@ -15,16 +16,25 @@ function App() {
   const dispatch = useDispatch();
   const styles = useStyles();
 
-  const { selectedCategoryName } = useSelector(state => state.app);
-
+  const { selectedCategoryName, activePage, selectedProductId  } = useSelector(state => state.app);
+  
   useEffect(() => dispatch(getProducts()), [dispatch]);
+
+  const renderPage = () => {
+    switch(activePage) {
+      case 'CATEGORY': 
+      return (<Category selectedCategory={selectedCategoryName} />)
+      case 'PRODUCT':
+      return (<Product selectedProductId={selectedProductId} />)
+      case 'HOME':
+      default: 
+      return (<CategoriesList />)
+    }
+  }
   return (
+
     <div className={styles.app}>
-      {selectedCategoryName != null ? (
-        <Category selectedCategory={selectedCategoryName} />
-      ) : (
-        <CategoriesList />
-      )}
+      {renderPage()}
     </div>
   );
 }

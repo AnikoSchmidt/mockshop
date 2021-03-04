@@ -36,8 +36,8 @@ export default function Category({ selectedCategory }) {
         state => state.products.productsByCategory[selectedCategory]
     );
     const dispatch = useDispatch();
-    const clickHandler = selectedProduct => {
-        dispatch(setProduct(selectedProduct));
+    const clickHandler = selectedProductId => {
+        dispatch(setProduct(selectedProductId));
       }
     const selectedItem = useSelector(
         state => state.app.selectedProduct

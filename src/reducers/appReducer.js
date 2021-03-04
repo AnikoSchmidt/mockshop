@@ -1,10 +1,32 @@
-export default function appReducer(state = {}, action) {
+export const PAGES = {
+  HOME: 'HOME',
+  CATEGORY: 'CATEGORY',
+  PRODUCT: 'PRODUCT'
+};
+
+const initialState = {
+  activePage: PAGES.HOME,
+  selectedCategoryName: null,
+  selectedProduct: null
+};
+
+
+
+export default function appReducer(state = initialState, action) {
     switch (action.type) {
       case 'SET_CATEGORY': 
-        return {...state, selectedCategoryName: action.selectedCategoryName};
+        return {
+          ...state, 
+          selectedCategoryName: action.selectedCategoryName, 
+          activePage: PAGES.CATEGORY
+        };
       
       case 'SET_SELECTEDPRODUCT':
-        return {...state, selectedProduct: action.selectedProduct};
+        return {
+          ...state, 
+          selectedProductId: action.selectedProductId, 
+          activePage: PAGES.PRODUCT
+        };
     
      default:
        return state; 

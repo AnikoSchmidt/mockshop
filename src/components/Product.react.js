@@ -60,7 +60,7 @@ const useStyles = makeStyles({
     }
   });
 
-export default function Product({selectedProduct}) {
+export default function Product(selectedProductId) {
    
     const styles = useStyles();
     
@@ -83,33 +83,34 @@ export default function Product({selectedProduct}) {
         state => state.products.products
       );
 
-    
     const productsById = {}
      products.forEach((item, index) => {
         return productsById[item.id] = item
     }
-    
     );
-    console.log(selectedProduct);
+
+    console.log(productsById);
+    console.log(selectedProductId);
+
     return (
         <>
         <div className={styles.container}>
             
             <CardItem
-                    key={selectedProduct}
-                    label={productsById[selectedProduct]?.title}
-                    imageURL={productsById[selectedProduct]?.image}
+                    key={selectedProductId.selectedProductId}
+                    label={productsById[selectedProductId.selectedProductId]?.title}
+                    imageURL={productsById[selectedProductId.selectedProductId]?.image}
                     clickHandler={()=> {}}
                     />
             <div>
              <Typography variant='h5' className={styles.productTitle}>
-                {productsById[selectedProduct].title}
+                {productsById[selectedProductId.selectedProductId].title}
             </Typography>   
             <Typography variant='p' color='grey' className={styles.productDescription}>
-                {productsById[selectedProduct].description}
+                {productsById[selectedProductId.selectedProductId].description}
             </Typography> 
             <Typography  className={styles.price}>
-                <span>Price: ${productsById[selectedProduct].price}</span>
+                <span>Price: ${productsById[selectedProductId.selectedProductId].price}</span>
             </Typography>  
             <div className={styles.selectorContainer}>   
             <div className={styles.productDetails}>

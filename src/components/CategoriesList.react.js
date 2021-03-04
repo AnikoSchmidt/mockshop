@@ -4,6 +4,7 @@ import { setCategory } from '../actions/appActions';
 import {makeStyles, CircularProgress} from '@material-ui/core';
 import CardItem from "./Carditem.react";
 
+
 const useStyles = makeStyles({
   container: {
     padding: '20px',

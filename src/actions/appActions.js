@@ -3,7 +3,7 @@ export const setCategory = selectedCategoryName => ({
     selectedCategoryName,
 });
 
-export const setProduct = selectedProduct => ({
+export const setProduct = selectedProductId => ({
     type: 'SET_SELECTEDPRODUCT', 
-    selectedProduct,
+    selectedProductId,
 });
