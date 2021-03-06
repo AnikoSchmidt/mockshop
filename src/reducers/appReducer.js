@@ -1,7 +1,7 @@
 export const PAGES = {
   HOME: 'HOME',
   CATEGORY: 'CATEGORY',
-  PRODUCT: 'PRODUCT'
+  PRODUCT: 'PRODUCT',
 };
 
 const initialState = {
@@ -22,13 +22,16 @@ export default function appReducer(state = initialState, action) {
         };
       
       case 'SET_SELECTEDPRODUCT':
-        console.log(action.selectedProductId);
         return {
           ...state, 
           selectedProductId: action.selectedProductId, 
           activePage: PAGES.PRODUCT
         };
-    
+      case 'SET_SEARCH':
+        return {
+          ...state,
+          searchTerm: action.searchTerm,
+        };
      default:
        return state; 
     }

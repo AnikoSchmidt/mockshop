@@ -4,9 +4,15 @@ export const setCategory = selectedCategoryName => ({
 });
 
 export const setProduct = selectedProductId => {
-    console.log(selectedProductId)
     return {
     type: 'SET_SELECTEDPRODUCT', 
     selectedProductId,
 };
+}
+
+export const setSearch = searchTerm => {
+    return {
+        type: 'SET_SEARCH',
+        searchTerm,
+    };
 }

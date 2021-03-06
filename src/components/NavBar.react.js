@@ -1,21 +1,23 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
-// import MenuIcon from '@material-ui/icons';
-// import SearchIcon from '@material-ui/icons/Search';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+import SearchIcon from '@material-ui/icons/Search';
+import SearchBar from "material-ui-search-bar";
+import { useDispatch} from 'react-redux';
+import { setSearch } from '../actions/appActions';
 
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
+    display: 'flex'
   },
   
   title: {
     flexGrow: 1,
-    display: 'none',
+    // display: 'none',
   },
   search: {
     position: 'relative',
@@ -24,11 +26,12 @@ const useStyles = makeStyles(() => ({
     '&:hover': {
       backgroundColor: fade('#fff', 0.25),
     },
-    marginLeft: 0,
-    width: '100%',
+    marginLeft: 20,
+    width: '30%',
+    
   },
   searchIcon: {
-    padding: 2,
+    paddingLeft: 10,
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -40,43 +43,54 @@ const useStyles = makeStyles(() => ({
     color: 'inherit',
   },
   inputInput: {
-    padding: 1,
+    marginLeft: 10,
+    padding: 7,
     // vertical padding + font size from searchIcon
-    paddingLeft: 1,
+    paddingLeft: 10,
     width: '100%',
     },
+    homeButton: {
+      marginRight: 10,
+    },
+    toolBar: {
+      display: 'flex',
+    }
+   
 }));
 
 export default function NavBar() {
   const styles = useStyles();
+  const dispatch = useDispatch();
+  const searchHandler = searchTerm => {
+    dispatch(setSearch(searchTerm));
+  }
 
   return (
     <div className={styles.root}>
       <AppBar position="static">
-        <Toolbar>
-          <IconButton
+        <Toolbar className={styles.toolBar}>
+          <HomeRoundedIcon
             edge="start"
-            className={styles.menuButton}
+            className={styles.homeButton}
             color="inherit"
             aria-label="open drawer"
           >
-            
-          </IconButton>
+          </HomeRoundedIcon>
           <Typography className={styles.title} variant="h6" noWrap>
-            Material-UI
-          </Typography>
+           
+          </Typography >
           <div className={styles.search}>
             <div className={styles.searchIcon}>
-              
+            <div className={styles.searchIcon}>
+              <SearchIcon />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: styles.inputRoot,
-                input: styles.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
+            </div >
+            <SearchBar
+                value={""}
+                onChange={(searchTerm) => searchHandler(searchTerm)}
+                onRequestSearch={() => {}}  
+           />
+            
           </div>
         </Toolbar>
       </AppBar>

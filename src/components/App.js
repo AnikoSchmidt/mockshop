@@ -6,6 +6,8 @@ import { getProducts } from '../actions/productsActions';
 import Category from './Category.react';
 import Product from './Product.react';
 import NavBar from './NavBar.react';
+import SearchResult from './SearchResult.react';
+
 
 const useStyles = makeStyles({
   app: {
@@ -17,20 +19,26 @@ function App() {
   const dispatch = useDispatch();
   const styles = useStyles();
 
-  const { selectedCategoryName, activePage, selectedProductId  } = useSelector(state => state.app);
-  console.log(selectedProductId);
+  const { selectedCategoryName, activePage, searchTerm  } = useSelector(state => state.app);
   useEffect(() => dispatch(getProducts()), [dispatch]);
 
   const renderPage = () => {
-    switch(activePage) {
-      case 'CATEGORY': 
-      return (<Category selectedCategory={selectedCategoryName} />)
-      case 'PRODUCT':
-      return (<Product />)
-      case 'HOME':
-      default: 
-      return (<CategoriesList />)
+    if(searchTerm?.length > 0) {
+      return (<SearchResult />)
+    } else if(searchTerm?.length === 0 || !searchTerm){
+      switch(activePage) {
+        case 'CATEGORY': 
+        return (<Category selectedCategory={selectedCategoryName} />)
+        case 'PRODUCT':
+        return (<Product />)
+        case 'SEARCH': 
+        return (<SearchResult />)
+        case 'HOME':
+        default: 
+        return (<CategoriesList />)
+      }
     }
+    
   }
   return (
     <div className={styles.app}>
