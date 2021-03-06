@@ -16,3 +16,10 @@ export const setSearch = searchTerm => {
         searchTerm,
     };
 }
+
+export const setPage = activePage => {
+    return {
+        type: 'SET_PAGE',
+        activePage,
+    };
+}

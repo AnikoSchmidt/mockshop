@@ -13,7 +13,8 @@ const useStyles = makeStyles({
     container: {
         padding: '20px',
         display: 'flex',
-        justifyContent: 'center',
+        margin: 'auto',
+       
       },
     title: {
         textTransform: 'capitalize',

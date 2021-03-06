@@ -11,7 +11,9 @@ const useStyles = makeStyles({
     container: {
         padding: '20px',
         display: 'flex',
-        justifyContent: 'center',
+        width: 1000,
+        flexWrap: 'wrap', 
+        margin: 'auto',
       },
     title: {
         textTransform: 'capitalize',
@@ -26,6 +28,12 @@ const useStyles = makeStyles({
         height: 200,
         objectFit: 'contain',
     },
+    result: {
+        marginLeft: 30,
+    },
+    searchTerm: {
+        marginLeft: 30,
+    }
   });
 
 export default function SearchResult() {
@@ -33,16 +41,16 @@ export default function SearchResult() {
     const products = useSelector(
         state => state.products.products
     );
-    
-    console.log(products);
+
     const resultProducts = [];
     const getResultProducts = () => {
         products.forEach((product, index) => {
                 const title = product.title.toLowerCase();
+                const description = product.description.toLowerCase();
+                const category = product.category.toLowerCase();
                 const searchTermLowerCase = searchTerm.toLowerCase();
-                console.log(product.title);
-                console.log(product.title.indexOf(searchTerm))
-                if(title.indexOf(searchTermLowerCase) > -1) {
+                
+                if(title.indexOf(searchTermLowerCase) > -1 || description.indexOf(searchTermLowerCase) > -1 || category.indexOf(searchTermLowerCase) > -1) {
                     resultProducts.push(<CardItem
                     key={product.id}
                     label={product.title}
@@ -52,7 +60,6 @@ export default function SearchResult() {
                 }
             }
         )
-        console.log(resultProducts);
         return resultProducts;
     }
     const { searchTerm } = useSelector(state => state.app);
@@ -67,8 +74,8 @@ export default function SearchResult() {
     } 
     return (
         <div>
-            <h1>Search Results for</h1>
-            <p>"{searchTerm}"</p>
+            <h1 className={styles.result}>Search Results for</h1>
+            <p className={styles.searchTerm}>"{searchTerm}"</p>
             {renderSearchResult()}
         </div>
     )

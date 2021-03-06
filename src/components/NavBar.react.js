@@ -64,6 +64,9 @@ export default function NavBar() {
   const searchHandler = searchTerm => {
     dispatch(setSearch(searchTerm));
   }
+  // const clickHandler = () => {
+  //   dispatch(setPage(activePage));
+  // }
 
   return (
     <div className={styles.root}>
@@ -74,6 +77,7 @@ export default function NavBar() {
             className={styles.homeButton}
             color="inherit"
             aria-label="open drawer"
+            // onClick={clickHandler}
           >
           </HomeRoundedIcon>
           <Typography className={styles.title} variant="h6" noWrap>
