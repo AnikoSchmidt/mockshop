@@ -28,6 +28,7 @@ export default function appReducer(state = initialState, action) {
           activePage: PAGES.PRODUCT
         };
       case 'SET_SEARCH':
+        
         return {
           ...state,
           searchTerm: action.searchTerm,
