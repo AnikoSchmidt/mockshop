@@ -65,12 +65,12 @@ export default function Product() {
     const styles = useStyles();
     
     const handleChange = (event) => {
-    const name = event.target.name;
+        const name = event.target.name;
         setState({
-          ...state,
-          [name]: event.target.value,
+            ...state,
+            [name]: event.target.value,
         });
-      };
+    };
     const { selectedProductId  } = useSelector(state => state.app);
     const selectedCategoryName = useSelector(
         state => state.app.selectedCategoryName

@@ -1,13 +1,15 @@
-export const setCategory = selectedCategoryName => ({
-    type: 'SET_CATEGORY', 
-    selectedCategoryName,
-});
+export const setCategory = selectedCategoryName => {
+    return {
+        type: 'SET_CATEGORY', 
+        selectedCategoryName,
+    };
+};
 
 export const setProduct = selectedProductId => {
     return {
-    type: 'SET_SELECTEDPRODUCT', 
-    selectedProductId,
-};
+        type: 'SET_SELECTEDPRODUCT', 
+        selectedProductId,
+    };
 }
 
 export const setSearch = searchTerm => {
@@ -17,9 +19,8 @@ export const setSearch = searchTerm => {
     };
 }
 
-export const setPage = activePage => {
+export const setHomePage = () => {
     return {
-        type: 'SET_PAGE',
-        activePage,
+        type: 'SET_HOME_PAGE',
     };
 }

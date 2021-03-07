@@ -7,7 +7,7 @@ import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import SearchIcon from '@material-ui/icons/Search';
 import SearchBar from "material-ui-search-bar";
 import { useDispatch} from 'react-redux';
-import { setSearch } from '../actions/appActions';
+import { setSearch, setHomePage } from '../actions/appActions';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -64,9 +64,10 @@ export default function NavBar() {
   const searchHandler = searchTerm => {
     dispatch(setSearch(searchTerm));
   }
-  // const clickHandler = () => {
-  //   dispatch(setPage(activePage));
-  // }
+  const clickHandler = () => {
+    dispatch(setHomePage());
+    dispatch(setSearch(''));
+  }
 
   return (
     <div className={styles.root}>
@@ -77,7 +78,7 @@ export default function NavBar() {
             className={styles.homeButton}
             color="inherit"
             aria-label="open drawer"
-            // onClick={clickHandler}
+            onClick={clickHandler}
           >
           </HomeRoundedIcon>
           <Typography className={styles.title} variant="h6" noWrap>

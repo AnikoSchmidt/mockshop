@@ -67,7 +67,7 @@ export default function SearchResult() {
         if(searchTerm.length >= 3) { 
             return (
             <div className={styles.container}> 
-            {getResultProducts()}
+                {getResultProducts()}
             </div>
             )
         }
